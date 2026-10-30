@@ -3,6 +3,12 @@
 !.env.example
 .git
 node_modules
+web/node_modules
+web/.next
+web/.env.local
+.venv
+**/__pycache__
+.pytest_cache
 vendor
 public/build
 public/hot

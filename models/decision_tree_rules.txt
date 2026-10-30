@@ -1,0 +1,178 @@
+|--- numeric__customer_responded <= 0.50
+|   |--- categories__address_type_house <= 0.50
+|   |   |--- numeric__previous_failed_deliveries <= 0.50
+|   |   |   |--- categories__day_type_weekday <= 0.50
+|   |   |   |   |--- categories__delivery_time_slot_evening <= 0.50
+|   |   |   |   |   |--- categories__address_type_commercial <= 0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- categories__address_type_commercial >  0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |--- categories__delivery_time_slot_evening >  0.50
+|   |   |   |   |   |--- categories__address_type_apartment <= 0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- categories__address_type_apartment >  0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |--- categories__day_type_weekday >  0.50
+|   |   |   |   |--- categories__delivery_time_slot_evening <= 0.50
+|   |   |   |   |   |--- categories__address_type_commercial <= 0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- categories__address_type_commercial >  0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |--- categories__delivery_time_slot_evening >  0.50
+|   |   |   |   |   |--- categories__address_type_apartment <= 0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- categories__address_type_apartment >  0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |--- numeric__previous_failed_deliveries >  0.50
+|   |   |   |--- categories__delivery_time_slot_evening <= 0.50
+|   |   |   |   |--- categories__address_type_commercial <= 0.50
+|   |   |   |   |   |--- categories__day_type_weekend <= 0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- categories__day_type_weekend >  0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |--- categories__address_type_commercial >  0.50
+|   |   |   |   |   |--- categories__delivery_time_slot_morning <= 0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- categories__delivery_time_slot_morning >  0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |--- categories__delivery_time_slot_evening >  0.50
+|   |   |   |   |--- categories__address_type_office <= 0.50
+|   |   |   |   |   |--- categories__address_type_apartment <= 0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- categories__address_type_apartment >  0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |--- categories__address_type_office >  0.50
+|   |   |   |   |   |--- numeric__previous_failed_deliveries <= 2.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- numeric__previous_failed_deliveries >  2.50
+|   |   |   |   |   |   |--- class: 0
+|   |--- categories__address_type_house >  0.50
+|   |   |--- categories__delivery_time_slot_evening <= 0.50
+|   |   |   |--- categories__day_type_weekday <= 0.50
+|   |   |   |   |--- numeric__previous_failed_deliveries <= 0.50
+|   |   |   |   |   |--- categories__delivery_time_slot_afternoon <= 0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- categories__delivery_time_slot_afternoon >  0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- numeric__previous_failed_deliveries >  0.50
+|   |   |   |   |   |--- categories__delivery_time_slot_afternoon <= 0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- categories__delivery_time_slot_afternoon >  0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |--- categories__day_type_weekday >  0.50
+|   |   |   |   |--- numeric__previous_failed_deliveries <= 1.50
+|   |   |   |   |   |--- categories__delivery_time_slot_afternoon <= 0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- categories__delivery_time_slot_afternoon >  0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |--- numeric__previous_failed_deliveries >  1.50
+|   |   |   |   |   |--- categories__delivery_time_slot_morning <= 0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- categories__delivery_time_slot_morning >  0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |--- categories__delivery_time_slot_evening >  0.50
+|   |   |   |--- categories__day_type_weekday <= 0.50
+|   |   |   |   |--- numeric__previous_failed_deliveries <= 1.50
+|   |   |   |   |   |--- numeric__previous_failed_deliveries <= 0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- numeric__previous_failed_deliveries >  0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |--- numeric__previous_failed_deliveries >  1.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |--- categories__day_type_weekday >  0.50
+|   |   |   |   |--- numeric__previous_failed_deliveries <= 1.50
+|   |   |   |   |   |--- numeric__previous_failed_deliveries <= 0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- numeric__previous_failed_deliveries >  0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- numeric__previous_failed_deliveries >  1.50
+|   |   |   |   |   |--- numeric__previous_failed_deliveries <= 2.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- numeric__previous_failed_deliveries >  2.50
+|   |   |   |   |   |   |--- class: 0
+|--- numeric__customer_responded >  0.50
+|   |--- categories__address_type_apartment <= 0.50
+|   |   |--- numeric__previous_failed_deliveries <= 1.50
+|   |   |   |--- categories__address_type_house <= 0.50
+|   |   |   |   |--- categories__delivery_time_slot_afternoon <= 0.50
+|   |   |   |   |   |--- categories__day_type_weekday <= 0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- categories__day_type_weekday >  0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- categories__delivery_time_slot_afternoon >  0.50
+|   |   |   |   |   |--- categories__day_type_weekday <= 0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- categories__day_type_weekday >  0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |--- categories__address_type_house >  0.50
+|   |   |   |   |--- categories__delivery_time_slot_morning <= 0.50
+|   |   |   |   |   |--- numeric__previous_failed_deliveries <= 0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- numeric__previous_failed_deliveries >  0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- categories__delivery_time_slot_morning >  0.50
+|   |   |   |   |   |--- categories__day_type_weekday <= 0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- categories__day_type_weekday >  0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |--- numeric__previous_failed_deliveries >  1.50
+|   |   |   |--- categories__delivery_time_slot_evening <= 0.50
+|   |   |   |   |--- categories__address_type_house <= 0.50
+|   |   |   |   |   |--- categories__day_type_weekend <= 0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- categories__day_type_weekend >  0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |--- categories__address_type_house >  0.50
+|   |   |   |   |   |--- categories__delivery_time_slot_afternoon <= 0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- categories__delivery_time_slot_afternoon >  0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |--- categories__delivery_time_slot_evening >  0.50
+|   |   |   |   |--- categories__day_type_weekday <= 0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- categories__day_type_weekday >  0.50
+|   |   |   |   |   |--- categories__address_type_office <= 0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- categories__address_type_office >  0.50
+|   |   |   |   |   |   |--- class: 0
+|   |--- categories__address_type_apartment >  0.50
+|   |   |--- numeric__previous_failed_deliveries <= 0.50
+|   |   |   |--- categories__delivery_time_slot_evening <= 0.50
+|   |   |   |   |--- categories__day_type_weekday <= 0.50
+|   |   |   |   |   |--- categories__delivery_time_slot_morning <= 0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- categories__delivery_time_slot_morning >  0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- categories__day_type_weekday >  0.50
+|   |   |   |   |   |--- categories__delivery_time_slot_afternoon <= 0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- categories__delivery_time_slot_afternoon >  0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |--- categories__delivery_time_slot_evening >  0.50
+|   |   |   |   |--- categories__day_type_weekend <= 0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- categories__day_type_weekend >  0.50
+|   |   |   |   |   |--- class: 0
+|   |   |--- numeric__previous_failed_deliveries >  0.50
+|   |   |   |--- categories__delivery_time_slot_evening <= 0.50
+|   |   |   |   |--- numeric__previous_failed_deliveries <= 1.50
+|   |   |   |   |   |--- categories__delivery_time_slot_morning <= 0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- categories__delivery_time_slot_morning >  0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |--- numeric__previous_failed_deliveries >  1.50
+|   |   |   |   |   |--- categories__day_type_weekend <= 0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- categories__day_type_weekend >  0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |--- categories__delivery_time_slot_evening >  0.50
+|   |   |   |   |--- categories__day_type_weekday <= 0.50
+|   |   |   |   |   |--- numeric__previous_failed_deliveries <= 1.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- numeric__previous_failed_deliveries >  1.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- categories__day_type_weekday >  0.50
+|   |   |   |   |   |--- numeric__previous_failed_deliveries <= 1.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- numeric__previous_failed_deliveries >  1.50
+|   |   |   |   |   |   |--- class: 1

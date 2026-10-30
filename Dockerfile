@@ -1,31 +1,21 @@
-FROM composer:2 AS php-dependencies
-WORKDIR /app
-COPY composer.json composer.lock ./
-RUN composer install --no-dev --prefer-dist --no-interaction --no-progress --no-scripts --optimize-autoloader
-COPY . .
-RUN composer dump-autoload --no-dev --optimize
+FROM python:3.12-slim
 
-FROM node:22-alpine AS frontend
-WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci
-COPY resources ./resources
-COPY vite.config.js ./
-COPY public ./public
-RUN npm run build
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    TF_CPP_MIN_LOG_LEVEL=2 \
+    AEGIS_MODELS_DIR=/app/models
 
-FROM php:8.4-cli
-WORKDIR /var/www/html
-RUN docker-php-ext-install pdo_sqlite
-COPY --from=php-dependencies /app ./
-COPY --from=frontend /app/public/build ./public/build
-RUN mkdir -p storage/framework/cache/data storage/framework/cache/locks storage/framework/sessions storage/framework/views storage/logs storage/app/private \
-    && chown -R www-data:www-data storage bootstrap/cache
-ENV APP_ENV=production \
-    APP_DEBUG=false \
-    CACHE_STORE=file \
-    SESSION_DRIVER=file \
-    LOG_CHANNEL=stderr
-USER www-data
-EXPOSE 8080
-CMD ["sh", "-c", "php artisan aegis:models:train && php artisan serve --host=0.0.0.0 --port=8080"]
+WORKDIR /app
+COPY api/requirements.txt /app/api/requirements.txt
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libgomp1 \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip install --no-cache-dir -r /app/api/requirements.txt
+
+COPY api /app/api
+COPY data /app/data
+COPY models /app/models
+
+WORKDIR /app/api
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

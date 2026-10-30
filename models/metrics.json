@@ -1,0 +1,834 @@
+{
+  "training_seed": 42,
+  "datasets": {
+    "cost": {
+      "file": "01_linear_regression_shipping_cost.csv",
+      "rows": 3000
+    },
+    "eta": {
+      "file": "02_knn_delivery_time.csv",
+      "rows": 3000
+    },
+    "risk": {
+      "file": "03_svm_late_delivery_risk.csv",
+      "rows": 3500
+    },
+    "failure": {
+      "file": "04_decision_tree_first_attempt_failure.csv",
+      "rows": 3000
+    },
+    "tickets": {
+      "file": "05_naive_bayes_customer_messages.csv",
+      "rows": 3600
+    },
+    "volume": {
+      "file": "06_ann_daily_parcel_volume.csv",
+      "rows": 2892
+    }
+  },
+  "shipping_cost": {
+    "algorithm": "linear",
+    "features": [
+      "distance_km",
+      "weight_kg",
+      "number_of_stops",
+      "fuel_price_php_per_liter"
+    ],
+    "target": "actual_shipping_cost_php",
+    "holdout_rows": 600,
+    "holdout": {
+      "mae": 8.4907,
+      "rmse": 10.5464,
+      "r2": 0.99006,
+      "mape_pct": 3.808
+    },
+    "comparison": {
+      "linear": {
+        "mae": 8.4907,
+        "rmse": 10.5464,
+        "r2": 0.99006,
+        "mape_pct": 3.808
+      }
+    },
+    "within_5_percent_target": true
+  },
+  "delivery_time": {
+    "algorithm": "KNeighborsRegressor",
+    "best_k": 15,
+    "candidate_k": [
+      3,
+      5,
+      7,
+      9,
+      11,
+      15,
+      21
+    ],
+    "cv_mae_minutes": 6.6953,
+    "holdout_mae_minutes": 6.4776,
+    "holdout_rmse_minutes": 8.2418,
+    "holdout_rows": 600,
+    "features": [
+      "route_type",
+      "area_type",
+      "time_of_day",
+      "parcel_size",
+      "traffic_level",
+      "distance_km"
+    ],
+    "categories": {
+      "route_type": [
+        "rural",
+        "suburban",
+        "urban"
+      ],
+      "area_type": [
+        "rural",
+        "suburban",
+        "urban"
+      ],
+      "time_of_day": [
+        "afternoon",
+        "evening",
+        "morning",
+        "night"
+      ],
+      "parcel_size": [
+        "large",
+        "medium",
+        "small"
+      ],
+      "traffic_level": [
+        "high",
+        "low",
+        "medium"
+      ]
+    }
+  },
+  "late_risk": {
+    "algorithm": "SVC",
+    "selected_kernel": "linear",
+    "classification_threshold": 0.23865,
+    "cv_roc_auc_by_kernel": {
+      "rbf": 0.71331,
+      "linear": 0.73943
+    },
+    "accuracy": 0.73857,
+    "precision_macro": 0.61473,
+    "recall_macro": 0.64649,
+    "f1_macro": 0.62349,
+    "labels": [
+      "0",
+      "1"
+    ],
+    "confusion_matrix": [
+      [
+        452,
+        118
+      ],
+      [
+        65,
+        65
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.874274661508704,
+        "recall": 0.7929824561403509,
+        "f1-score": 0.8316467341306347,
+        "support": 570.0
+      },
+      "1": {
+        "precision": 0.3551912568306011,
+        "recall": 0.5,
+        "f1-score": 0.41533546325878595,
+        "support": 130.0
+      },
+      "accuracy": 0.7385714285714285,
+      "macro avg": {
+        "precision": 0.6147329591696525,
+        "recall": 0.6464912280701754,
+        "f1-score": 0.6234910986947103,
+        "support": 700.0
+      },
+      "weighted avg": {
+        "precision": 0.7778734577827707,
+        "recall": 0.7385714285714285,
+        "f1-score": 0.7543317838258629,
+        "support": 700.0
+      }
+    },
+    "late_class": {
+      "precision": 0.35519,
+      "recall": 0.5,
+      "f1": 0.41534,
+      "roc_auc": 0.74213,
+      "prevalence": 0.18629
+    },
+    "holdout_rows": 700,
+    "weather_order": [
+      "clear",
+      "cloudy",
+      "light_rain",
+      "heavy_rain",
+      "storm"
+    ],
+    "feature_names": [
+      "weather_conditions",
+      "hub_load_pct",
+      "distance_km",
+      "driver_workload_stops"
+    ]
+  },
+  "first_attempt_failure": {
+    "algorithm": "DecisionTreeClassifier",
+    "max_depth": 6,
+    "holdout_rows": 600,
+    "accuracy": 0.69167,
+    "precision_macro": 0.57086,
+    "recall_macro": 0.60869,
+    "f1_macro": 0.57017,
+    "labels": [
+      "0",
+      "1"
+    ],
+    "confusion_matrix": [
+      [
+        367,
+        134
+      ],
+      [
+        51,
+        48
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.8779904306220095,
+        "recall": 0.7325349301397206,
+        "f1-score": 0.7986942328618063,
+        "support": 501.0
+      },
+      "1": {
+        "precision": 0.26373626373626374,
+        "recall": 0.48484848484848486,
+        "f1-score": 0.3416370106761566,
+        "support": 99.0
+      },
+      "accuracy": 0.6916666666666667,
+      "macro avg": {
+        "precision": 0.5708633471791367,
+        "recall": 0.6086917074941027,
+        "f1-score": 0.5701656217689814,
+        "support": 600.0
+      },
+      "weighted avg": {
+        "precision": 0.7766384930858615,
+        "recall": 0.6916666666666667,
+        "f1-score": 0.7232797912011741,
+        "support": 600.0
+      }
+    },
+    "feature_importance": [
+      {
+        "feature": "numeric__customer_responded",
+        "importance": 0.3230375377477663
+      },
+      {
+        "feature": "numeric__previous_failed_deliveries",
+        "importance": 0.1979069789460138
+      },
+      {
+        "feature": "categories__address_type_apartment",
+        "importance": 0.14535898216941895
+      },
+      {
+        "feature": "categories__delivery_time_slot_evening",
+        "importance": 0.10737137092809505
+      },
+      {
+        "feature": "categories__address_type_house",
+        "importance": 0.0916577624740356
+      },
+      {
+        "feature": "categories__day_type_weekday",
+        "importance": 0.06182051818836281
+      },
+      {
+        "feature": "categories__delivery_time_slot_morning",
+        "importance": 0.02448088644020699
+      },
+      {
+        "feature": "categories__delivery_time_slot_afternoon",
+        "importance": 0.018194675816600874
+      },
+      {
+        "feature": "categories__day_type_weekend",
+        "importance": 0.014659463323704783
+      },
+      {
+        "feature": "categories__address_type_office",
+        "importance": 0.009875263911443851
+      },
+      {
+        "feature": "categories__address_type_commercial",
+        "importance": 0.00563656005435089
+      }
+    ],
+    "rule_file": "decision_tree_rules.txt",
+    "categories": {
+      "address_type": [
+        "apartment",
+        "commercial",
+        "house",
+        "office"
+      ],
+      "delivery_time_slot": [
+        "afternoon",
+        "evening",
+        "morning"
+      ],
+      "day_type": [
+        "weekday",
+        "weekend"
+      ]
+    },
+    "numeric_ranges": {
+      "previous_failed_deliveries": [
+        0,
+        3
+      ],
+      "customer_responded": [
+        0,
+        1
+      ]
+    }
+  },
+  "customer_messages": {
+    "algorithm": "TfidfVectorizer + MultinomialNB",
+    "holdout_rows": 720,
+    "accuracy": 1.0,
+    "precision_macro": 1.0,
+    "recall_macro": 1.0,
+    "f1_macro": 1.0,
+    "labels": [
+      "address_problem",
+      "damaged_parcel",
+      "missing_parcel",
+      "reschedule_request",
+      "shipping_fee",
+      "tracking_request"
+    ],
+    "confusion_matrix": [
+      [
+        120,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        120,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        120,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        120
+      ]
+    ],
+    "per_class": {
+      "address_problem": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 120.0
+      },
+      "damaged_parcel": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 120.0
+      },
+      "missing_parcel": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 120.0
+      },
+      "reschedule_request": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 120.0
+      },
+      "shipping_fee": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 120.0
+      },
+      "tracking_request": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 120.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 720.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 720.0
+      }
+    },
+    "categories": [
+      "address_problem",
+      "damaged_parcel",
+      "missing_parcel",
+      "reschedule_request",
+      "shipping_fee",
+      "tracking_request"
+    ],
+    "department_by_category": {
+      "damaged_parcel": "Claims & care",
+      "address_problem": "Address resolution",
+      "tracking_request": "Shipment tracking",
+      "missing_parcel": "Shipment investigation",
+      "reschedule_request": "Delivery coordination",
+      "shipping_fee": "Billing & payments"
+    }
+  },
+  "daily_volume": {
+    "algorithm": "Keras feed-forward neural network",
+    "features": [
+      "day_of_week",
+      "month",
+      "promotion_index",
+      "weather_severity",
+      "holiday_flag",
+      "parcel_volume_lag_1",
+      "parcel_volume_lag_7",
+      "rolling_7day_avg",
+      "hub_one_hot"
+    ],
+    "hubs": [
+      "East Hub",
+      "North Hub",
+      "South Hub",
+      "West Hub"
+    ],
+    "mae": 311.575,
+    "mape_pct": 9.99,
+    "rmse": 423.267,
+    "holdout_rows": 364,
+    "holdout_start": "2025-10-01",
+    "holdout_end": "2025-12-30",
+    "train_end": "2025-09-30",
+    "interval_abs_error_90th": 616.875,
+    "holdout_error_series": [
+      {
+        "date": "2025-10-01",
+        "mae": 343.483
+      },
+      {
+        "date": "2025-10-02",
+        "mae": 229.37
+      },
+      {
+        "date": "2025-10-03",
+        "mae": 258.824
+      },
+      {
+        "date": "2025-10-04",
+        "mae": 250.79
+      },
+      {
+        "date": "2025-10-05",
+        "mae": 63.751
+      },
+      {
+        "date": "2025-10-06",
+        "mae": 217.875
+      },
+      {
+        "date": "2025-10-07",
+        "mae": 140.486
+      },
+      {
+        "date": "2025-10-08",
+        "mae": 463.849
+      },
+      {
+        "date": "2025-10-09",
+        "mae": 260.516
+      },
+      {
+        "date": "2025-10-10",
+        "mae": 189.711
+      },
+      {
+        "date": "2025-10-11",
+        "mae": 115.266
+      },
+      {
+        "date": "2025-10-12",
+        "mae": 55.356
+      },
+      {
+        "date": "2025-10-13",
+        "mae": 198.593
+      },
+      {
+        "date": "2025-10-14",
+        "mae": 178.685
+      },
+      {
+        "date": "2025-10-15",
+        "mae": 298.433
+      },
+      {
+        "date": "2025-10-16",
+        "mae": 210.009
+      },
+      {
+        "date": "2025-10-17",
+        "mae": 281.294
+      },
+      {
+        "date": "2025-10-18",
+        "mae": 176.034
+      },
+      {
+        "date": "2025-10-19",
+        "mae": 93.906
+      },
+      {
+        "date": "2025-10-20",
+        "mae": 228.381
+      },
+      {
+        "date": "2025-10-21",
+        "mae": 385.167
+      },
+      {
+        "date": "2025-10-22",
+        "mae": 244.273
+      },
+      {
+        "date": "2025-10-23",
+        "mae": 169.182
+      },
+      {
+        "date": "2025-10-24",
+        "mae": 298.433
+      },
+      {
+        "date": "2025-10-25",
+        "mae": 171.215
+      },
+      {
+        "date": "2025-10-26",
+        "mae": 38.178
+      },
+      {
+        "date": "2025-10-27",
+        "mae": 240.328
+      },
+      {
+        "date": "2025-10-28",
+        "mae": 205.842
+      },
+      {
+        "date": "2025-10-29",
+        "mae": 286.775
+      },
+      {
+        "date": "2025-10-30",
+        "mae": 223.822
+      },
+      {
+        "date": "2025-10-31",
+        "mae": 311.25
+      },
+      {
+        "date": "2025-11-01",
+        "mae": 189.688
+      },
+      {
+        "date": "2025-11-02",
+        "mae": 168.411
+      },
+      {
+        "date": "2025-11-03",
+        "mae": 226.801
+      },
+      {
+        "date": "2025-11-04",
+        "mae": 233.091
+      },
+      {
+        "date": "2025-11-05",
+        "mae": 87.277
+      },
+      {
+        "date": "2025-11-06",
+        "mae": 275.162
+      },
+      {
+        "date": "2025-11-07",
+        "mae": 197.402
+      },
+      {
+        "date": "2025-11-08",
+        "mae": 266.06
+      },
+      {
+        "date": "2025-11-09",
+        "mae": 277.599
+      },
+      {
+        "date": "2025-11-10",
+        "mae": 296.45
+      },
+      {
+        "date": "2025-11-11",
+        "mae": 297.586
+      },
+      {
+        "date": "2025-11-12",
+        "mae": 376.091
+      },
+      {
+        "date": "2025-11-13",
+        "mae": 118.736
+      },
+      {
+        "date": "2025-11-14",
+        "mae": 291.147
+      },
+      {
+        "date": "2025-11-15",
+        "mae": 274.575
+      },
+      {
+        "date": "2025-11-16",
+        "mae": 44.431
+      },
+      {
+        "date": "2025-11-17",
+        "mae": 369.839
+      },
+      {
+        "date": "2025-11-18",
+        "mae": 320.852
+      },
+      {
+        "date": "2025-11-19",
+        "mae": 176.418
+      },
+      {
+        "date": "2025-11-20",
+        "mae": 193.179
+      },
+      {
+        "date": "2025-11-21",
+        "mae": 320.405
+      },
+      {
+        "date": "2025-11-22",
+        "mae": 139.374
+      },
+      {
+        "date": "2025-11-23",
+        "mae": 106.406
+      },
+      {
+        "date": "2025-11-24",
+        "mae": 163.226
+      },
+      {
+        "date": "2025-11-25",
+        "mae": 235.345
+      },
+      {
+        "date": "2025-11-26",
+        "mae": 215.97
+      },
+      {
+        "date": "2025-11-27",
+        "mae": 209.262
+      },
+      {
+        "date": "2025-11-28",
+        "mae": 574.925
+      },
+      {
+        "date": "2025-11-29",
+        "mae": 431.028
+      },
+      {
+        "date": "2025-11-30",
+        "mae": 186.454
+      },
+      {
+        "date": "2025-12-01",
+        "mae": 954.378
+      },
+      {
+        "date": "2025-12-02",
+        "mae": 527.206
+      },
+      {
+        "date": "2025-12-03",
+        "mae": 748.625
+      },
+      {
+        "date": "2025-12-04",
+        "mae": 1137.243
+      },
+      {
+        "date": "2025-12-05",
+        "mae": 873.111
+      },
+      {
+        "date": "2025-12-06",
+        "mae": 296.45
+      },
+      {
+        "date": "2025-12-07",
+        "mae": 412.035
+      },
+      {
+        "date": "2025-12-08",
+        "mae": 927.858
+      },
+      {
+        "date": "2025-12-09",
+        "mae": 271.038
+      },
+      {
+        "date": "2025-12-10",
+        "mae": 353.064
+      },
+      {
+        "date": "2025-12-11",
+        "mae": 461.952
+      },
+      {
+        "date": "2025-12-12",
+        "mae": 772.188
+      },
+      {
+        "date": "2025-12-13",
+        "mae": 170.701
+      },
+      {
+        "date": "2025-12-14",
+        "mae": 306.459
+      },
+      {
+        "date": "2025-12-15",
+        "mae": 191.746
+      },
+      {
+        "date": "2025-12-16",
+        "mae": 605.79
+      },
+      {
+        "date": "2025-12-17",
+        "mae": 478.647
+      },
+      {
+        "date": "2025-12-18",
+        "mae": 777.27
+      },
+      {
+        "date": "2025-12-19",
+        "mae": 821.945
+      },
+      {
+        "date": "2025-12-20",
+        "mae": 146.148
+      },
+      {
+        "date": "2025-12-21",
+        "mae": 301.298
+      },
+      {
+        "date": "2025-12-22",
+        "mae": 113.355
+      },
+      {
+        "date": "2025-12-23",
+        "mae": 279.976
+      },
+      {
+        "date": "2025-12-24",
+        "mae": 298.775
+      },
+      {
+        "date": "2025-12-25",
+        "mae": 190.121
+      },
+      {
+        "date": "2025-12-26",
+        "mae": 504.528
+      },
+      {
+        "date": "2025-12-27",
+        "mae": 526.643
+      },
+      {
+        "date": "2025-12-28",
+        "mae": 163.477
+      },
+      {
+        "date": "2025-12-29",
+        "mae": 212.796
+      },
+      {
+        "date": "2025-12-30",
+        "mae": 436.197
+      }
+    ]
+  }
+}
